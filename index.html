@@ -66,19 +66,20 @@
             /* 添加右侧栏样式 */
             #sidebar {
                 position: fixed;
-                right: -460px; /* 调整初始位置 */
+                right: -460px;
                 top: 0;
-                width: 400px; /* 增加宽度到400px */
-                height: 100vh; /* 使用视口高度 */
+                width: 400px;
+                height: 100vh;
                 background: rgba(26, 26, 46, 0.92);
                 color: #e6e6e6;
-                padding: 25px; /* 增加内边距 */
+                padding: 25px;
                 transition: right 0.3s ease;
                 z-index: 1000;
                 border-left: 2px solid #d4a373;
                 box-shadow: -2px 0 10px rgba(26, 26, 46, 0.3);
                 display: flex;
                 flex-direction: column;
+                font-family: 'Open Sans', 'Helvetica', sans-serif;
             }
             #sidebar.active {
                 right: 0;
@@ -121,7 +122,9 @@
             #sidebar h2 {
                 color: #e6e6e6;
                 margin-bottom: 20px;
-                font-size: 22px;
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
                 border-bottom: 1px solid rgba(212, 163, 115, 0.3);
                 padding-bottom: 10px;
             }
@@ -132,15 +135,19 @@
                 border-bottom: 1px solid rgba(212, 163, 115, 0.3);
             }
             .panel-tab {
-                padding: 10px 20px;
+                padding: 12px 24px;
                 cursor: pointer;
                 color: #e6e6e6;
                 border-bottom: 2px solid transparent;
                 transition: all 0.3s ease;
+                font-weight: 500;
+                font-size: 15px;
+                letter-spacing: 0.3px;
             }
             .panel-tab.active {
                 color: #d4a373;
                 border-bottom: 2px solid #d4a373;
+                font-weight: 600;
             }
             .panel-content {
                 display: none;
@@ -154,13 +161,18 @@
             }
             .panel-content h3 {
                 color: #d4a373;
-                margin: 15px 0 10px 0;
-                font-size: 16px;
+                margin: 20px 0 15px 0;
+                font-size: 18px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
             }
             .panel-content p {
                 color: #e6e6e6;
-                line-height: 1.6;
+                line-height: 1.8;
                 margin: 0 0 15px 0;
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: 0.2px;
             }
             /* 添加图片样式 */
             .location-image {
@@ -173,44 +185,51 @@
             }
             .location-description {
                 background: rgba(212, 163, 115, 0.1);
-                padding: 25px; /* 增加内边距 */
+                padding: 25px;
                 border-radius: 4px;
                 margin-top: 15px;
                 font-size: 14px;
                 line-height: 1.8;
+                font-weight: 400;
+                letter-spacing: 0.2px;
             }
             /* 添加聊天框样式 */
             .chat-box {
                 position: relative;
                 background: rgba(26, 26, 46, 0.95);
-                padding: 25px; /* 增加内边距 */
+                padding: 25px;
                 border-top: 1px solid rgba(212, 163, 115, 0.3);
                 margin-top: 25px;
                 border-radius: 4px;
             }
             .chat-input {
-                width: calc(100% - 90px); /* 调整输入框宽度 */
-                padding: 12px; /* 增加输入框内边距 */
+                width: calc(100% - 90px);
+                padding: 12px 16px;
                 background: rgba(212, 163, 115, 0.1);
                 border: 1px solid #d4a373;
                 border-radius: 4px;
                 color: #e6e6e6;
                 margin-bottom: 12px;
                 display: inline-block;
-                font-size: 14px; /* 增加字体大小 */
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: 0.2px;
             }
-            .chat-input:focus {
-                outline: none;
-                border-color: #e6e6e6;
+            .chat-input::placeholder {
+                color: rgba(230, 230, 230, 0.6);
+                font-weight: 400;
             }
             .chat-response {
                 color: #e6e6e6;
-                font-size: 13px;
-                margin-top: 10px;
+                font-size: 14px;
+                margin-top: 12px;
                 display: none;
-                padding: 10px;
+                padding: 15px;
                 background: rgba(212, 163, 115, 0.1);
                 border-radius: 4px;
+                line-height: 1.6;
+                font-weight: 400;
+                letter-spacing: 0.2px;
             }
             .chat-response.active {
                 display: block;
@@ -219,11 +238,14 @@
                 background: #d4a373;
                 color: #e6e6e6;
                 border: none;
-                padding: 8px 15px;
+                padding: 10px 20px;
                 border-radius: 4px;
                 cursor: pointer;
                 transition: background 0.3s ease;
                 float: right;
+                font-weight: 500;
+                font-size: 14px;
+                letter-spacing: 0.3px;
             }
             .send-btn:hover {
                 background: #c49262;
@@ -233,12 +255,14 @@
                 background: #c49262;
                 color: #e6e6e6;
                 border: none;
-                padding: 8px 15px;
+                padding: 10px 20px;
                 border-radius: 4px;
                 cursor: pointer;
                 transition: background 0.3s ease;
                 width: 80%;
-                font-size: 12px;
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
             }
             .rotationToggle:hover {
                 background: #d4a373;
