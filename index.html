@@ -68,7 +68,7 @@
                 right: -460px; /* 调整初始位置 */
                 top: 0;
                 width: 400px; /* 增加宽度到400px */
-                height: 100%;
+                height: 100vh; /* 使用视口高度 */
                 background: rgba(0, 0, 51, 0.85);
                 color: #E6F7FF;
                 padding: 25px; /* 增加内边距 */
@@ -76,15 +76,34 @@
                 z-index: 1000;
                 border-left: 2px solid #00B4D8;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+                display: flex;
+                flex-direction: column;
             }
             #sidebar.active {
                 right: 0;
             }
             #sidebar-content {
                 display: none;
+                flex: 1;
+                overflow-y: auto; /* 添加滚动条 */
+                padding-right: 10px; /* 为滚动条留出空间 */
             }
             #sidebar-content.active {
                 display: block;
+            }
+            #sidebar-content::-webkit-scrollbar {
+                width: 6px;
+            }
+            #sidebar-content::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 3px;
+            }
+            #sidebar-content::-webkit-scrollbar-thumb {
+                background: #00B4D8;
+                border-radius: 3px;
+            }
+            #sidebar-content::-webkit-scrollbar-thumb:hover {
+                background: #0096C7;
             }
             .close-btn {
                 position: absolute;
@@ -126,6 +145,8 @@
                 display: none;
                 padding: 15px 0;
                 margin-bottom: 20px;
+                position: relative;
+                min-height: calc(100vh - 200px);
             }
             .panel-content.active {
                 display: block;
@@ -206,6 +227,30 @@
             .send-btn:hover {
                 background: #0096C7;
             }
+            /* 添加旋转按钮样式 */
+            .rotationToggle {
+                background: #0096C7;
+                color: #E6F7FF;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+                width: 80%;
+                font-size: 13px;
+            }
+            .rotationToggle:hover {
+                background: #00B4D8;
+            }
+            .rotation-button-container {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 15px 0;
+                text-align: center;
+                background: linear-gradient(to bottom, transparent, rgba(0, 0, 51, 0.95));
+            }
         </style>
         <script>
             var _hmt = _hmt || [];
@@ -244,6 +289,10 @@
                         <button class="send-btn">Send</button>
                         <div class="chat-response"></div>
                     </div>
+                    <!-- 添加旋转控制按钮 -->
+                    <div class="rotation-button-container">
+                        <button class="rotationToggle">Start Rotation</button>
+                    </div>
                 </div>
                 <div class="panel-content" id="panel2">
                     <h3>Zambia</h3>
@@ -258,6 +307,10 @@
                         <input type="text" class="chat-input" placeholder="Ask about Zambia...">
                         <button class="send-btn">Send</button>
                         <div class="chat-response"></div>
+                    </div>
+                    <!-- 添加旋转控制按钮 -->
+                    <div class="rotation-button-container">
+                        <button class="rotationToggle">Start Rotation</button>
                     </div>
                 </div>
                 <div class="panel-content" id="panel3">
@@ -274,6 +327,10 @@
                         <button class="send-btn">Send</button>
                         <div class="chat-response"></div>
                     </div>
+                    <!-- 添加旋转控制按钮 -->
+                    <div class="rotation-button-container">
+                        <button class="rotationToggle">Start Rotation</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -283,8 +340,7 @@
         </div> -->
  <!--  -->
         <div id="title" style="line-height:1.25;">
-            <p>Water governance Assessment through Visualizing Environmental Stakeholders (WAVES)
-            </p>
+            <p>Water governance Assessment through Visualizing Environmental Stakeholders (WAVES)</p>
         </div>
 
         <div id="subtitle" style="position: absolute; top: 100px; left: 10px; width: 300px; color: #C7F3FF; font-size: 15px; text-align: left; background-color: rgba(0, 0, 0, 0.3); padding: 10px 20px; border-radius: 5px; pointer-events: none;">
@@ -376,7 +432,7 @@
             controls.update();
 
             controls.autoRotate = false;
-            controls.autoRotateSpeed = 3; //auto rotate
+            controls.autoRotateSpeed = 2; //auto rotate
 
             controls.enablePan = false; // ban pan
             controls.enableZoom = true; // ban zoom
@@ -517,6 +573,22 @@
                     // 添加当前活动状态
                     tab.classList.add('active');
                     document.getElementById(tab.dataset.panel).classList.add('active');
+                });
+            });
+
+            // 添加旋转控制功能
+            const rotationToggles = document.querySelectorAll('.rotationToggle');
+            let isRotating = false;
+
+            rotationToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    isRotating = !isRotating;
+                    controls.autoRotate = isRotating;
+                    // 更新所有按钮的文本和样式
+                    rotationToggles.forEach(btn => {
+                        btn.textContent = isRotating ? 'Stop Rotation' : 'Start Rotation';
+                        btn.style.background = isRotating ? '#00B4D8' : '#0096C7';
+                    });
                 });
             });
 
