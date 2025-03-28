@@ -11,8 +11,8 @@
             body {
                 margin: 0;
                 padding: 0;
-                background: #ffffff;
-                color: #000000;
+                background: #000033 url(./image/loading.gif) center center no-repeat;
+                color: #ffffff;
                 font-family: sans-serif;
                 font-size: 13px;
                 line-height: 20px;
@@ -61,6 +61,150 @@
                 font: 13px/13px Georgia;
                 padding: 15px;
             }
+            /* 添加右侧栏样式 */
+            #sidebar {
+                position: fixed;
+                right: -460px; /* 调整初始位置 */
+                top: 0;
+                width: 400px; /* 增加宽度到400px */
+                height: 100%;
+                background: rgba(0, 0, 51, 0.85);
+                color: #E6F7FF;
+                padding: 25px; /* 增加内边距 */
+                transition: right 0.3s ease;
+                z-index: 1000;
+                border-left: 2px solid #00B4D8;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+            }
+            #sidebar.active {
+                right: 0;
+            }
+            #sidebar-content {
+                display: none;
+            }
+            #sidebar-content.active {
+                display: block;
+            }
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+                font-size: 20px;
+                color: #00B4D8;
+                transition: color 0.2s ease;
+            }
+            .close-btn:hover {
+                color: #C7F3FF;
+            }
+            #sidebar h2 {
+                color: #C7F3FF;
+                margin-bottom: 20px;
+                font-size: 24px;
+                border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+                padding-bottom: 10px;
+            }
+            /* 添加面板样式 */
+            .panel-tabs {
+                display: flex;
+                margin-bottom: 15px;
+                border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+            }
+            .panel-tab {
+                padding: 10px 20px;
+                cursor: pointer;
+                color: #E6F7FF;
+                border-bottom: 2px solid transparent;
+                transition: all 0.3s ease;
+            }
+            .panel-tab.active {
+                color: #00B4D8;
+                border-bottom: 2px solid #00B4D8;
+            }
+            .panel-content {
+                display: none;
+                padding: 15px 0;
+                margin-bottom: 20px;
+            }
+            .panel-content.active {
+                display: block;
+            }
+            .panel-content h3 {
+                color: #00B4D8;
+                margin: 15px 0 10px 0;
+                font-size: 18px;
+            }
+            .panel-content p {
+                color: #E6F7FF;
+                line-height: 1.6;
+                margin: 0 0 15px 0;
+            }
+            /* 添加图片样式 */
+            .location-image {
+                width: 100%;
+                height: 200px; /* 增加图片高度 */
+                object-fit: cover;
+                border-radius: 4px;
+                margin-bottom: 20px; /* 增加底部间距 */
+                border: 1px solid rgba(0, 180, 216, 0.3);
+            }
+            .location-description {
+                background: rgba(0, 180, 216, 0.1);
+                padding: 25px; /* 增加内边距 */
+                border-radius: 4px;
+                margin-top: 15px;
+                font-size: 15px; /* 增加字体大小 */
+                line-height: 1.8;
+            }
+            /* 添加聊天框样式 */
+            .chat-box {
+                position: relative;
+                background: rgba(0, 0, 51, 0.95);
+                padding: 25px; /* 增加内边距 */
+                border-top: 1px solid rgba(0, 180, 216, 0.3);
+                margin-top: 25px;
+                border-radius: 4px;
+            }
+            .chat-input {
+                width: calc(100% - 90px); /* 调整输入框宽度 */
+                padding: 12px; /* 增加输入框内边距 */
+                background: rgba(0, 180, 216, 0.1);
+                border: 1px solid #00B4D8;
+                border-radius: 4px;
+                color: #E6F7FF;
+                margin-bottom: 12px;
+                display: inline-block;
+                font-size: 15px; /* 增加字体大小 */
+            }
+            .chat-input:focus {
+                outline: none;
+                border-color: #C7F3FF;
+            }
+            .chat-response {
+                color: #C7F7FF;
+                font-size: 14px;
+                margin-top: 10px;
+                display: none;
+                padding: 10px;
+                background: rgba(0, 180, 216, 0.1);
+                border-radius: 4px;
+            }
+            .chat-response.active {
+                display: block;
+            }
+            .send-btn {
+                background: #00B4D8;
+                color: #E6F7FF;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+                float: right;
+            }
+            .send-btn:hover {
+                background: #0096C7;
+            }
         </style>
         <script>
             var _hmt = _hmt || [];
@@ -75,21 +219,75 @@
 
     <body>
         <div id="container"></div>
+        <!-- 添加右侧栏 -->
+        <div id="sidebar">
+            <span class="close-btn">&times;</span>
+            <div id="sidebar-content">
+                <h2>Location Details</h2>
+                <div class="panel-tabs">
+                    <div class="panel-tab active" data-panel="panel1">China</div>
+                    <div class="panel-tab" data-panel="panel2">Zambia</div>
+                    <div class="panel-tab" data-panel="panel3">Botswana</div>
+                </div>
+                <div class="panel-content active" id="panel1">
+                    <h3>China</h3>
+                    <img src="./image/china.jpg" alt="China Water Management" class="location-image">
+                    <p style="font-size: 12px; color: #888; margin-top: -15px; margin-bottom: 15px;">Source: Ministry of Water Resources of China</p>
+                    <p>High level in water governance index</p>
+                    <div class="location-description">
+                        China has implemented comprehensive water management policies, including the South-to-North Water Diversion Project and strict water pollution control measures. The country has achieved significant progress in water resource management and environmental protection.
+                    </div>
+                    <!-- 添加聊天框 -->
+                    <div class="chat-box">
+                        <input type="text" class="chat-input" placeholder="Ask about China...">
+                        <button class="send-btn">Send</button>
+                        <div class="chat-response"></div>
+                    </div>
+                </div>
+                <div class="panel-content" id="panel2">
+                    <h3>Zambia</h3>
+                    <img src="./image/zambia.png" alt="Zambia Water Management" class="location-image">
+                    <p style="font-size: 12px; color: #888; margin-top: -15px; margin-bottom: 15px;">Source: Zambia Water Resources Management Authority</p>
+                    <p>Middle level in water governance index</p>
+                    <div class="location-description">
+                        Zambia faces challenges in water resource management, particularly in rural areas. The country is working on improving water access and implementing sustainable water management practices through various government initiatives.
+                    </div>
+                    <!-- 添加聊天框 -->
+                    <div class="chat-box">
+                        <input type="text" class="chat-input" placeholder="Ask about Zambia...">
+                        <button class="send-btn">Send</button>
+                        <div class="chat-response"></div>
+                    </div>
+                </div>
+                <div class="panel-content" id="panel3">
+                    <h3>Botswana</h3>
+                    <img src="./image/botswana.jpeg" alt="Botswana Water Management" class="location-image">
+                    <p style="font-size: 12px; color: #888; margin-top: -15px; margin-bottom: 15px;">Source: Department of Water Affairs, Botswana</p>
+                    <p>A part of Zambezi River Basin</p>
+                    <div class="location-description">
+                        As part of the Zambezi River Basin, Botswana plays a crucial role in regional water management. The country focuses on sustainable water use and participates in transboundary water management initiatives with neighboring countries.
+                    </div>
+                    <!-- 添加聊天框 -->
+                    <div class="chat-box">
+                        <input type="text" class="chat-input" placeholder="Ask about Botswana...">
+                        <button class="send-btn">Send</button>
+                        <div class="chat-response"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="title">
             WAVES
         </div>
  <!--  -->
         <div id="subtitle" style="line-height:1.25;">
-
             <p>Water governance Assessment through Visualizing Environmental Stakeholders
             </p>
-			<!-- <blockquote>I am certain, if everyone could see the Earth floating just outside their windows, every day would be EarthDay. There are few things more fragile or more beautiful than Earth, let's work together today and everyday to protect our home. <br> Micheal Collins (1930 – 2021)
-			</blockquote> 
-            <p>Source:
-                <a href="https://developers.google.com/earth-engine/datasets/catalog/NOAA_DMSP-OLS_NIGHTTIME_LIGHTS#description">DMSP OLS Dataset</a>
-                <a href="https://www.prio.org/Data/Armed-Conflict/Conflict-Site/">UCDP/PRIO Armed Conflict Dataset</a>
-            </p> -->
+        </div>
+
+        <div id="copyright" style="position: fixed; bottom: 20px; left: 20px; color: #888; font-size: 12px; background-color: rgba(0, 0, 0, 0.2); padding: 5px 10px; border-radius: 3px;">
+            © 2025 WAVES Teams. All rights reserved.
         </div>
 
         <!-- <div id="info">
@@ -106,40 +304,295 @@
         <script src="src/three.js"></script>
         <script src="src/Tween.js"></script>
         <script src="src/OrbitControls.js"></script>
-        <script src="src/globe.gl.min.js"></script>
         <script type="text/javascript">
 
         if(!Detector.webgl){
             Detector.addGetWebGLMessage();
         } else {
-            // Initialize Globe
-            var globe = new Globe(document.getElementById('container'))
-                .globeImageUrl('./image/light_dim_4096.jpg')
-                .backgroundColor('#ffffff')
-                .width(window.innerWidth)
-                .height(window.innerHeight);
+            //define shaders for halo and earth--------------------------------------------------------
+            var Shaders = {
+                'earth' : {
+                uniforms: {
+                    'texture': { type: 't', value: null }
+                },
+                vertexShader: [
+                    'varying vec3 vNormal;',
+                    'varying vec2 vUv;',
+                    'void main() {',
+                    'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+                    'vNormal = normalize( normalMatrix * normal );',
+                    'vUv = uv;',
+                    '}'
+                ].join('\n'),
+                fragmentShader: [
+                    'uniform sampler2D texture;',
+                    'varying vec3 vNormal;',
+                    'varying vec2 vUv;',
+                    'void main() {',
+                    'vec3 diffuse = texture2D( texture, vUv ).xyz;',
+                    'float intensity = 1.05 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) );',
+                    'vec3 atmosphere = vec3( 1.0, 1.0, 1.0 ) * pow( intensity, 10.0 );', //earth fog
+                    'gl_FragColor = vec4( diffuse + atmosphere, 1.0 );',
+                    '}'
+                ].join('\n')
+                },
+                'halo' : {
+                uniforms: {},
+                vertexShader: [
+                    'varying vec3 vNormal;',
+                    'void main() {',
+                    'vNormal = normalize( normalMatrix * normal );',
+                    'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+                    '}'
+                ].join('\n'),
+                fragmentShader: [
+                    'varying vec3 vNormal;',
+                    'void main() {',
+                    'float intensity = pow( 0.8 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 12.0 );',
+                    'gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 ) * intensity;',
+                    '}'
+                ].join('\n')
+                }
+            };
 
-            // Add markers
-            globe.markerLabel(d => d.name)
-                .markerColor(() => '#ff0000')
-                .markerRadius(0.02)
-                .markersData([
-                    { name: 'Marker 1', lat: 0, lng: 0 },
-                    { name: 'Marker 2', lat: 30, lng: 120 },
-                    { name: 'Marker 3', lat: -30, lng: -120 }
-                ]);
+            // create scene, camera, and controls -----------------------------------------------------------
+            var scene = new THREE.Scene();
+            // scene.background = new THREE.Color(0xffffff);  // Set background to white
 
-            // Disable controls
-            globe.controls().autoRotate = false;
-            globe.controls().enablePan = false;
-            globe.controls().enableZoom = false;
-            globe.controls().enableRotate = false;
-            globe.controls().enabled = false;
+            var camera = new THREE.PerspectiveCamera(50, window.innerWidth/ window.innerHeight, 0.1, 1000); // fov angle; h/w; near ;far
+            camera.position.set(0, 0.6, 1.5); //Y is height
 
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                globe.width(window.innerWidth)
-                    .height(window.innerHeight);
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+
+            document.body.appendChild( renderer.domElement );
+            // controls
+            var controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.update();
+
+            controls.autoRotate = false;
+            controls.autoRotateSpeed = 3; //auto rotate
+
+            controls.enablePan = false; // ban pan
+            controls.enableZoom = false; // bna zoom
+
+            // add an ambient light
+            var ambient = new THREE.AmbientLight(0xffffff, 5 ); //color, intensity
+            scene.add(ambient);
+
+            // create halo--------------------------------------------------------------------------------
+            var shader_halo =Shaders["halo"];
+            var uniforms = THREE.UniformsUtils.clone(shader_halo.uniforms);
+            var material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: shader_halo.vertexShader,
+                fragmentShader: shader_halo.fragmentShader,
+                side: THREE.BackSide,
+                blending: THREE.AdditiveBlending,
+                transparent: true
+            });
+
+            var halo = new THREE.Mesh(
+                new THREE.SphereGeometry(0.83, 50, 50), //radius , widthSegments , heightSegments
+                material
+            )
+            scene.add(halo);
+
+            // create earth ------------------------------------------------------------------------------
+            var shader_earth = Shaders['earth'];
+            var uniforms = THREE.UniformsUtils.clone(shader_earth.uniforms);
+            uniforms['texture'].value = new THREE.TextureLoader().load('./image/world_masked.jpg');
+
+            var material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: shader_earth.vertexShader,
+                fragmentShader: shader_earth.fragmentShader
+            });
+
+            var earth = new THREE.Mesh(
+                new THREE.SphereGeometry(0.66, 50 , 50),
+                material
+            );
+            scene.add(earth);
+
+            // Add markers on Earth
+            function createMarker(color) {
+                const markerGeometry = new THREE.SphereGeometry(0.02, 16, 16);
+                const markerMaterial = new THREE.MeshBasicMaterial({ color: color });
+                return new THREE.Mesh(markerGeometry, markerMaterial);
+            }
+
+            // Create three markers with different colors
+            const marker1 = createMarker(0xffffff); // White marker
+            const marker2 = createMarker(0xffffff); // White marker
+            const marker3 = createMarker(0xffffff); // White marker
+
+            // Position markers on Earth's surface
+            // Using spherical coordinates (radius, phi, theta)
+            const radius = 0.66; // Same as Earth's radius
+            const phi1 = Math.PI * -0.3; // 90 degrees
+            const theta1 = Math.PI * 0.4; // 90 degrees
+            const phi2 = Math.PI * 0.55; // 54 degrees
+            const theta2 = Math.PI * -0.15; // 126 degrees
+            const phi3 = Math.PI * 0.3; // 126 degrees 经度
+            const theta3 = Math.PI * 0.5; // 54 degrees 纬度
+
+            // Convert spherical coordinates to Cartesian
+            marker1.position.set(
+                radius * Math.sin(phi1) * Math.cos(theta1),
+                radius * Math.cos(phi1),
+                radius * Math.sin(phi1) * Math.sin(theta1)
+            );
+            marker2.position.set(
+                radius * Math.sin(phi2) * Math.cos(theta2),
+                radius * Math.cos(phi2),
+                radius * Math.sin(phi2) * Math.sin(theta2)
+            );
+            marker3.position.set(
+                radius * Math.sin(phi3) * Math.cos(theta3),
+                radius * Math.cos(phi3),
+                radius * Math.sin(phi3) * Math.sin(theta3)
+            );
+
+            // Add markers to scene
+            scene.add(marker1);
+            scene.add(marker2);
+            scene.add(marker3);
+
+            // 添加点击事件处理
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+            const sidebar = document.getElementById('sidebar');
+            const sidebarContent = document.getElementById('sidebar-content');
+            const closeBtn = document.querySelector('.close-btn');
+            const panelTabs = document.querySelectorAll('.panel-tab');
+            const panels = document.querySelectorAll('.panel-content');
+
+            // 面板切换功能
+            panelTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // 移除所有活动状态
+                    panelTabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
+                    
+                    // 添加当前活动状态
+                    tab.classList.add('active');
+                    document.getElementById(tab.dataset.panel).classList.add('active');
+                });
+            });
+
+            // 点击事件处理
+            window.addEventListener('click', onMouseClick, false);
+
+            function onMouseClick(event) {
+                // 计算鼠标在归一化设备坐标中的位置
+                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+                // 更新射线投射器
+                raycaster.setFromCamera(mouse, camera);
+
+                // 检测射线与标记点的相交
+                const intersects = raycaster.intersectObjects([marker1, marker2, marker3]);
+
+                if (intersects.length > 0) {
+                    const clickedMarker = intersects[0].object;
+                    let panelIndex;
+                    
+                    // 确定点击的是哪个标记点
+                    if (clickedMarker === marker1) panelIndex = 0;
+                    else if (clickedMarker === marker2) panelIndex = 1;
+                    else if (clickedMarker === marker3) panelIndex = 2;
+
+                    // 显示侧边栏和对应的面板
+                    sidebar.classList.add('active');
+                    sidebarContent.classList.add('active');
+                    
+                    // 切换到对应的面板
+                    panelTabs[panelIndex].click();
+                }
+            }
+
+            // 关闭按钮事件
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarContent.classList.remove('active');
+            });
+
+            // animate ---------------------------------------------------------------------------------------
+            function animate() {
+                requestAnimationFrame( animate );
+                controls.update();
+                renderer.render( scene, camera );
+            };
+            animate();
+
+            // resize window settings -------------
+            window.addEventListener('resize', onWindowResize, false);
+
+            function onWindowResize( event ) {
+                camera.aspect = container.offsetWidth / container.offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize( container.offsetWidth, container.offsetHeight );
+            }
+
+            // 添加聊天功能
+            const chatInputs = document.querySelectorAll('.chat-input');
+            const chatResponses = document.querySelectorAll('.chat-response');
+            const sendBtns = document.querySelectorAll('.send-btn');
+
+            // 地点描述数据
+            const locationDescriptions = {
+                panel1: {
+                    keywords: ['water', 'governance', 'index', 'level', 'high'],
+                    response: "China has achieved a high level in water governance index, demonstrating strong water management practices and policies."
+                },
+                panel2: {
+                    keywords: ['water', 'governance', 'index', 'level', 'middle'],
+                    response: "Zambia maintains a middle level in water governance index, showing moderate water management capabilities."
+                },
+                panel3: {
+                    keywords: ['zambezi', 'river', 'basin', 'part'],
+                    response: "Botswana is an important part of the Zambezi River Basin, contributing to regional water management."
+                }
+            };
+
+            function handleChat(panelId) {
+                const chatInput = document.querySelector(`#${panelId} .chat-input`);
+                const chatResponse = document.querySelector(`#${panelId} .chat-response`);
+                const input = chatInput.value.toLowerCase();
+                const description = locationDescriptions[panelId];
+
+                if (input && description.keywords.some(keyword => input.includes(keyword))) {
+                    chatResponse.textContent = description.response;
+                    chatResponse.classList.add('active');
+                } else {
+                    chatResponse.textContent = "Please ask about water governance, index levels, or river basin information.";
+                    chatResponse.classList.add('active');
+                }
+            }
+
+            // 为每个聊天框添加事件监听
+            sendBtns.forEach((btn, index) => {
+                const panelId = `panel${index + 1}`;
+                btn.addEventListener('click', () => handleChat(panelId));
+            });
+
+            chatInputs.forEach((input, index) => {
+                const panelId = `panel${index + 1}`;
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleChat(panelId);
+                    }
+                });
+            });
+
+            // 切换面板时清空聊天
+            panelTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    chatInputs.forEach(input => input.value = '');
+                    chatResponses.forEach(response => response.classList.remove('active'));
+                });
             });
         }
         </script>
