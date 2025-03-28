@@ -29,8 +29,9 @@
             }
             #title {
                 position: absolute;
+                width: 300px;
                 font-family: 'Open Sans', 'Helvetica', sans-serif; /* 更现代的字体组合 */
-                font-weight: 1000; /* 强调品牌标识 */
+                font-weight: 100; /* 强调品牌标识 */
                 color: #C7F3FF; /* 水蓝色系 */
                 text-shadow: 1px 1px 3px rgba(0,68,85,0.5); /* 水纹投影效果 */
                 letter-spacing: 0.1em;
@@ -277,13 +278,17 @@
             </div>
         </div>
 
-        <div id="title">
+        <!-- <div id="title">
             WAVES
-        </div>
+        </div> -->
  <!--  -->
-        <div id="subtitle" style="line-height:1.25;">
-            <p>Water governance Assessment through Visualizing Environmental Stakeholders
+        <div id="title" style="line-height:1.25;">
+            <p>Water governance Assessment through Visualizing Environmental Stakeholders (WAVES)
             </p>
+        </div>
+
+        <div id="subtitle" style="position: absolute; top: 100px; left: 10px; width: 300px; color: #C7F3FF; font-size: 15px; text-align: left; background-color: rgba(0, 0, 0, 0.3); padding: 10px 20px; border-radius: 5px; pointer-events: none;">
+            This visualization shows Global Water Security Index. Click on markers to view location details, and chat with the bot to get more information.
         </div>
 
         <div id="copyright" style="position: fixed; bottom: 20px; left: 20px; color: #888; font-size: 12px; background-color: rgba(0, 0, 0, 0.2); padding: 5px 10px; border-radius: 3px;">
@@ -374,7 +379,7 @@
             controls.autoRotateSpeed = 3; //auto rotate
 
             controls.enablePan = false; // ban pan
-            controls.enableZoom = false; // bna zoom
+            controls.enableZoom = true; // ban zoom
 
             // add an ambient light
             var ambient = new THREE.AmbientLight(0xffffff, 5 ); //color, intensity
@@ -417,15 +422,41 @@
 
             // Add markers on Earth
             function createMarker(color) {
-                const markerGeometry = new THREE.SphereGeometry(0.02, 16, 16);
+                const markerGeometry = new THREE.SphereGeometry(0.01, 16, 16);
                 const markerMaterial = new THREE.MeshBasicMaterial({ color: color });
                 return new THREE.Mesh(markerGeometry, markerMaterial);
             }
 
+            // Create text sprite for location labels
+            function createTextSprite(text) {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = 256;
+                canvas.height = 64;
+                
+                context.font = 'bold 24px Arial';
+                context.fillStyle = '#FFFF00';
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                context.fillText(text, canvas.width/2, canvas.height/2);
+                
+                const texture = new THREE.CanvasTexture(canvas);
+                const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+                const sprite = new THREE.Sprite(spriteMaterial);
+                
+                sprite.scale.set(0.2, 0.05, 1);
+                return sprite;
+            }
+
             // Create three markers with different colors
-            const marker1 = createMarker(0xffffff); // White marker
-            const marker2 = createMarker(0xffffff); // White marker
-            const marker3 = createMarker(0xffffff); // White marker
+            const marker1 = createMarker(0xFFFF00); // Bright yellow marker
+            const marker2 = createMarker(0xFFFF00); // Bright yellow marker
+            const marker3 = createMarker(0xFFFF00); // Bright yellow marker
+
+            // Create text sprites for labels
+            const label1 = createTextSprite('China');
+            const label2 = createTextSprite('Zambia');
+            const label3 = createTextSprite('Botswana');
 
             // Position markers on Earth's surface
             // Using spherical coordinates (radius, phi, theta)
@@ -454,10 +485,18 @@
                 radius * Math.sin(phi3) * Math.sin(theta3)
             );
 
-            // Add markers to scene
+            // Position labels slightly above markers
+            label1.position.copy(marker1.position).multiplyScalar(1.1);
+            label2.position.copy(marker2.position).multiplyScalar(1.1);
+            label3.position.copy(marker3.position).multiplyScalar(1.1);
+
+            // Add markers and labels to scene
             scene.add(marker1);
             scene.add(marker2);
             scene.add(marker3);
+            scene.add(label1);
+            scene.add(label2);
+            scene.add(label3);
 
             // 添加点击事件处理
             const raycaster = new THREE.Raycaster();
