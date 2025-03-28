@@ -11,7 +11,7 @@
             body {
                 margin: 0;
                 padding: 0;
-                background: #000000 url(./image/loading.gif) center center no-repeat;
+                background: #000033 url(./image/loading.gif) center center no-repeat;
                 color: #ffffff;
                 font-family: sans-serif;
                 font-size: 13px;
@@ -29,21 +29,28 @@
             }
             #title {
                 position: absolute;
+                font-family: 'Open Sans', 'Helvetica', sans-serif; /* 更现代的字体组合 */
+                font-weight: 1000; /* 强调品牌标识 */
+                color: #C7F3FF; /* 水蓝色系 */
+                text-shadow: 1px 1px 3px rgba(0,68,85,0.5); /* 水纹投影效果 */
+                letter-spacing: 0.1em;
                 top: 20px;
-                width: 350px;
                 left: 20px;
                 background-color: rgba(0, 0, 0, 0.2);
-                font: 22px/22px Georgia;
                 padding: 10px;
             }
             #subtitle {
                 position: absolute;
+                font-family:  sans-serif; 
+                color: #E6F7FF;
+                background: linear-gradient(90deg, rgba(0,40,60,0.8) 0%, transparent 100%);
+                line-height: 1.2;
+                font-size: 15px;
                 top: 60px;
                 width: 400px;
                 left: 20px;
                 background-color: rgba(0, 0, 0, 0.2);
-                font: 13px/13px Helvetica;
-                padding: 5px;
+                padding: 0px;
             }
             #lines {
                 position: absolute;
@@ -77,7 +84,7 @@
 
             <p>Water governance Assessment through Visualizing Environmental Stakeholders
             </p>
-			<!-- <blockquote>I am certain, if everyone could see the Earth floating just outside their windows, every day would be EarthDay. There are few things more fragile or more beautiful than Earth, let’s work together today and everyday to protect our home. <br> Micheal Collins (1930 – 2021)
+			<!-- <blockquote>I am certain, if everyone could see the Earth floating just outside their windows, every day would be EarthDay. There are few things more fragile or more beautiful than Earth, let's work together today and everyday to protect our home. <br> Micheal Collins (1930 – 2021)
 			</blockquote> 
             <p>Source:
                 <a href="https://developers.google.com/earth-engine/datasets/catalog/NOAA_DMSP-OLS_NIGHTTIME_LIGHTS#description">DMSP OLS Dataset</a>
@@ -152,6 +159,7 @@
 
             // create scene, camera, and controls -----------------------------------------------------------
             var scene = new THREE.Scene();
+            // scene.background = new THREE.Color(0xffffff);  // Set background to white
 
             var camera = new THREE.PerspectiveCamera(50, window.innerWidth/ window.innerHeight, 0.1, 1000); // fov angle; h/w; near ;far
             camera.position.set(0, 0.6, 1.5); //Y is height
