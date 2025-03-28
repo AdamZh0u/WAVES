@@ -11,8 +11,8 @@
             body {
                 margin: 0;
                 padding: 0;
-                background: #000033 url(./image/loading.gif) center center no-repeat;
-                color: #ffffff;
+                background: #1a1a2e url(./image/loading.gif) center center no-repeat;
+                color: #e6e6e6;
                 font-family: sans-serif;
                 font-size: 12px;
                 line-height: 20px;
@@ -22,7 +22,7 @@
                 font-size: 11px;
                 position: absolute;
                 bottom: 5px;
-                background-color: rgba(0, 0, 0, 0.8);
+                background-color: rgba(26, 26, 46, 0.8);
                 border-radius: 3px;
                 right: 10px;
                 padding: 10px;
@@ -30,28 +30,28 @@
             #title {
                 position: absolute;
                 width: 300px;
-                font-family: 'Open Sans', 'Helvetica', sans-serif; /* 更现代的字体组合 */
-                font-weight: 100; /* 强调品牌标识 */
-                color: #C7F3FF; /* 水蓝色系 */
-                text-shadow: 1px 1px 3px rgba(0,68,85,0.5); /* 水纹投影效果 */
+                font-family: 'Open Sans', 'Helvetica', sans-serif;
+                font-weight: 100;
+                color: #b3d9ff;
+                text-shadow: 1px 1px 3px rgba(26, 26, 46, 0.5);
                 letter-spacing: 0.1em;
                 top: 20px;
                 left: 20px;
-                background-color: rgba(0, 0, 0, 0.2);
+                background-color: rgba(26, 26, 46, 0.2);
                 padding: 10px;
                 font-size: 14px;
             }
             #subtitle {
                 position: absolute;
-                font-family:  sans-serif; 
-                color: #E6F7FF;
-                background: linear-gradient(90deg, rgba(0,40,60,0.8) 0%, transparent 100%);
+                font-family: sans-serif; 
+                color: #d4e6ff;
+                background: linear-gradient(90deg, rgba(26, 26, 46, 0.8) 0%, transparent 100%);
                 line-height: 1.2;
                 font-size: 14px;
                 top: 60px;
                 width: 400px;
                 left: 20px;
-                background-color: rgba(0, 0, 0, 0.2);
+                background-color: rgba(26, 26, 46, 0.2);
                 padding: 0px;
             }
             #lines {
@@ -59,7 +59,7 @@
                 bottom: 5px;
                 width: 300px;
                 left: 10px;
-                background-color: rgba(0, 0, 0, 0.2);
+                background-color: rgba(26, 26, 46, 0.2);
                 font: 13px/13px Georgia;
                 padding: 15px;
             }
@@ -70,13 +70,13 @@
                 top: 0;
                 width: 400px; /* 增加宽度到400px */
                 height: 100vh; /* 使用视口高度 */
-                background: rgba(0, 0, 51, 0.85);
-                color: #E6F7FF;
+                background: rgba(26, 26, 46, 0.92);
+                color: #e6e6e6;
                 padding: 25px; /* 增加内边距 */
                 transition: right 0.3s ease;
                 z-index: 1000;
-                border-left: 2px solid #00B4D8;
-                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+                border-left: 2px solid #d4a373;
+                box-shadow: -2px 0 10px rgba(26, 26, 46, 0.3);
                 display: flex;
                 flex-direction: column;
             }
@@ -100,11 +100,11 @@
                 border-radius: 3px;
             }
             #sidebar-content::-webkit-scrollbar-thumb {
-                background: #00B4D8;
+                background: #d4a373;
                 border-radius: 3px;
             }
             #sidebar-content::-webkit-scrollbar-thumb:hover {
-                background: #0096C7;
+                background: #c49262;
             }
             .close-btn {
                 position: absolute;
@@ -112,35 +112,35 @@
                 right: 10px;
                 cursor: pointer;
                 font-size: 20px;
-                color: #00B4D8;
+                color: #d4a373;
                 transition: color 0.2s ease;
             }
             .close-btn:hover {
-                color: #C7F3FF;
+                color: #e6e6e6;
             }
             #sidebar h2 {
-                color: #C7F3FF;
+                color: #e6e6e6;
                 margin-bottom: 20px;
                 font-size: 22px;
-                border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+                border-bottom: 1px solid rgba(212, 163, 115, 0.3);
                 padding-bottom: 10px;
             }
             /* 添加面板样式 */
             .panel-tabs {
                 display: flex;
                 margin-bottom: 15px;
-                border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+                border-bottom: 1px solid rgba(212, 163, 115, 0.3);
             }
             .panel-tab {
                 padding: 10px 20px;
                 cursor: pointer;
-                color: #E6F7FF;
+                color: #e6e6e6;
                 border-bottom: 2px solid transparent;
                 transition: all 0.3s ease;
             }
             .panel-tab.active {
-                color: #00B4D8;
-                border-bottom: 2px solid #00B4D8;
+                color: #d4a373;
+                border-bottom: 2px solid #d4a373;
             }
             .panel-content {
                 display: none;
@@ -153,12 +153,12 @@
                 display: block;
             }
             .panel-content h3 {
-                color: #00B4D8;
+                color: #d4a373;
                 margin: 15px 0 10px 0;
                 font-size: 16px;
             }
             .panel-content p {
-                color: #E6F7FF;
+                color: #e6e6e6;
                 line-height: 1.6;
                 margin: 0 0 15px 0;
             }
@@ -169,10 +169,10 @@
                 object-fit: cover;
                 border-radius: 4px;
                 margin-bottom: 20px; /* 增加底部间距 */
-                border: 1px solid rgba(0, 180, 216, 0.3);
+                border: 1px solid rgba(212, 163, 115, 0.3);
             }
             .location-description {
-                background: rgba(0, 180, 216, 0.1);
+                background: rgba(212, 163, 115, 0.1);
                 padding: 25px; /* 增加内边距 */
                 border-radius: 4px;
                 margin-top: 15px;
@@ -182,42 +182,42 @@
             /* 添加聊天框样式 */
             .chat-box {
                 position: relative;
-                background: rgba(0, 0, 51, 0.95);
+                background: rgba(26, 26, 46, 0.95);
                 padding: 25px; /* 增加内边距 */
-                border-top: 1px solid rgba(0, 180, 216, 0.3);
+                border-top: 1px solid rgba(212, 163, 115, 0.3);
                 margin-top: 25px;
                 border-radius: 4px;
             }
             .chat-input {
                 width: calc(100% - 90px); /* 调整输入框宽度 */
                 padding: 12px; /* 增加输入框内边距 */
-                background: rgba(0, 180, 216, 0.1);
-                border: 1px solid #00B4D8;
+                background: rgba(212, 163, 115, 0.1);
+                border: 1px solid #d4a373;
                 border-radius: 4px;
-                color: #E6F7FF;
+                color: #e6e6e6;
                 margin-bottom: 12px;
                 display: inline-block;
                 font-size: 14px; /* 增加字体大小 */
             }
             .chat-input:focus {
                 outline: none;
-                border-color: #C7F3FF;
+                border-color: #e6e6e6;
             }
             .chat-response {
-                color: #C7F7FF;
+                color: #e6e6e6;
                 font-size: 13px;
                 margin-top: 10px;
                 display: none;
                 padding: 10px;
-                background: rgba(0, 180, 216, 0.1);
+                background: rgba(212, 163, 115, 0.1);
                 border-radius: 4px;
             }
             .chat-response.active {
                 display: block;
             }
             .send-btn {
-                background: #00B4D8;
-                color: #E6F7FF;
+                background: #d4a373;
+                color: #e6e6e6;
                 border: none;
                 padding: 8px 15px;
                 border-radius: 4px;
@@ -226,12 +226,12 @@
                 float: right;
             }
             .send-btn:hover {
-                background: #0096C7;
+                background: #c49262;
             }
             /* 添加旋转按钮样式 */
             .rotationToggle {
-                background: #0096C7;
-                color: #E6F7FF;
+                background: #c49262;
+                color: #e6e6e6;
                 border: none;
                 padding: 8px 15px;
                 border-radius: 4px;
@@ -241,7 +241,7 @@
                 font-size: 12px;
             }
             .rotationToggle:hover {
-                background: #00B4D8;
+                background: #d4a373;
             }
             .rotation-button-container {
                 position: absolute;
@@ -250,7 +250,7 @@
                 right: 0;
                 padding: 15px 0;
                 text-align: center;
-                background: linear-gradient(to bottom, transparent, rgba(0, 0, 51, 0.95));
+                background: linear-gradient(to bottom, transparent, rgba(26, 26, 46, 0.95));
             }
         </style>
         <script>
@@ -492,7 +492,7 @@
                 canvas.height = 64;
                 
                 context.font = 'bold 24px Arial';
-                context.fillStyle = '#FFFF00';
+                context.fillStyle = '#FFD700'; // Softer yellow for text
                 context.textAlign = 'center';
                 context.textBaseline = 'middle';
                 context.fillText(text, canvas.width/2, canvas.height/2);
@@ -506,9 +506,9 @@
             }
 
             // Create three markers with different colors
-            const marker1 = createMarker(0xFFFF00); // Bright yellow marker
-            const marker2 = createMarker(0xFFFF00); // Bright yellow marker
-            const marker3 = createMarker(0xFFFF00); // Bright yellow marker
+            const marker1 = createMarker(0xFFD700); // Softer yellow marker
+            const marker2 = createMarker(0xFFD700); // Softer yellow marker
+            const marker3 = createMarker(0xFFD700); // Softer yellow marker
 
             // Create text sprites for labels
             const label1 = createTextSprite('China');
@@ -588,7 +588,7 @@
                     // 更新所有按钮的文本和样式
                     rotationToggles.forEach(btn => {
                         btn.textContent = isRotating ? 'Stop Rotation' : 'Start Rotation';
-                        btn.style.background = isRotating ? '#00B4D8' : '#0096C7';
+                        btn.style.background = isRotating ? '#d4a373' : '#c49262';
                     });
                 });
             });
