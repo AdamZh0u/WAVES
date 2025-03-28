@@ -32,7 +32,7 @@
                 width: 300px;
                 font-family: 'Open Sans', 'Helvetica', sans-serif;
                 font-weight: 100;
-                color: #b3d9ff;
+                color: #FFD700;
                 text-shadow: 1px 1px 3px rgba(26, 26, 46, 0.5);
                 letter-spacing: 0.1em;
                 top: 20px;
@@ -44,14 +44,13 @@
             #subtitle {
                 position: absolute;
                 font-family: sans-serif; 
-                color: #d4e6ff;
-                background: linear-gradient(90deg, rgba(26, 26, 46, 0.8) 0%, transparent 100%);
+                color: #B8860B;  /* 更柔和的暗金色 */
                 line-height: 1.2;
                 font-size: 14px;
+                font-weight: 300;
                 top: 60px;
                 width: 400px;
                 left: 20px;
-                background-color: rgba(26, 26, 46, 0.2);
                 padding: 0px;
             }
             #lines {
@@ -368,11 +367,11 @@
             <p>Water governance Assessment through Visualizing Environmental Stakeholders (WAVES)</p>
         </div>
 
-        <div id="subtitle" style="position: absolute; top: 100px; left: 10px; width: 300px; color: #C7F3FF; font-size: 14px; text-align: left; background-color: rgba(0, 0, 0, 0.3); padding: 10px 20px; border-radius: 5px; pointer-events: none;">
+        <div id="subtitle" style="position: absolute; top: 100px; left: 10px; width: 300px; color: #C7F3FF; font-size: 12px; text-align: left; padding: 10px 20px; border-radius: 5px;">
             This visualization shows Global Water Security Index. Click on markers to view location details, and chat with the bot to get more information.
         </div>
 
-        <div id="copyright" style="position: fixed; bottom: 20px; left: 20px; color: #888; font-size: 11px; background-color: rgba(0, 0, 0, 0.2); padding: 5px 10px; border-radius: 3px;">
+        <div id="copyright" style="position: fixed; bottom: 20px; left: 20px; color: #888; font-size: 11px; padding: 5px 10px; border-radius: 3px;">
             © 2025 WAVES Teams. All rights reserved.
         </div>
 
@@ -443,7 +442,7 @@
 
             // create scene, camera, and controls -----------------------------------------------------------
             var scene = new THREE.Scene();
-            // scene.background = new THREE.Color(0xffffff);  // Set background to white
+            scene.background = new THREE.Color(0x1a1a2e);  // Set background to match the design theme
 
             var camera = new THREE.PerspectiveCamera(50, window.innerWidth/ window.innerHeight, 0.1, 1000); // fov angle; h/w; near ;far
             camera.position.set(0, 0.6, 1.5); //Y is height
