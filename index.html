@@ -315,6 +315,27 @@
                 text-align: center;
                 background: linear-gradient(to bottom, transparent, rgba(26, 26, 46, 0.95));
             }
+            /* 添加文字控制按钮样式 */
+            .text-toggle-btn {
+                background: #c49262;
+                color: #e6e6e6;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+                width: 80%;
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                margin-bottom: 15px;
+            }
+            .text-toggle-btn:hover {
+                background: #d4a373;
+            }
+            .text-toggle-btn.hidden {
+                background: #8b4513;
+            }
         </style>
         <script>
             var _hmt = _hmt || [];
@@ -334,6 +355,7 @@
             <span class="close-btn">&times;</span>
             <div id="sidebar-content">
                 <h2>Location Details</h2>
+                <button class="text-toggle-btn">Hide Text</button>
                 <div class="panel-tabs">
                     <div class="panel-tab active" data-panel="panel1">China</div>
                     <div class="panel-tab" data-panel="panel2">Zambia</div>
@@ -830,6 +852,19 @@
                     chatInputs.forEach(input => input.value = '');
                     chatResponses.forEach(response => response.classList.remove('active'));
                 });
+            });
+
+            // 添加文字显示/隐藏功能
+            const textToggleBtn = document.querySelector('.text-toggle-btn');
+            const textElements = document.querySelectorAll('#title, #subtitle, .section-title, .section-text, #copyright');
+
+            textToggleBtn.addEventListener('click', () => {
+                const isHidden = textToggleBtn.classList.contains('hidden');
+                textElements.forEach(element => {
+                    element.style.display = isHidden ? 'block' : 'none';
+                });
+                textToggleBtn.textContent = isHidden ? 'Hide Text' : 'Show Text';
+                textToggleBtn.classList.toggle('hidden');
             });
         }
         </script>
